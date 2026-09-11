@@ -1,0 +1,897 @@
+/* ========================================
+   GLOBAL / DESIGN TOKENS
+   ======================================== */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary: #176b87;
+  --color-primary-dark: #0e4f65;
+  --color-secondary: #d99a3d;
+
+  --color-background: #f7f4ed;
+  --color-surface: #ffffff;
+
+  --color-text: #1f2933;
+ --color-text-muted: #59636f;
+
+  --color-border: #d9d5cc;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  color: var(--color-text);
+  background: var(--color-background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* ========================================
+   ATOM — BUTTON
+   ======================================== */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0.75rem 1.25rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.button:hover {
+  transform: translateY(-1px);
+}
+
+.button:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 2px;
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  transform: none;
+}
+
+.button-primary {
+  color: var(--color-surface);
+  background-color: var(--color-primary);
+}
+
+.button-primary:hover {
+  background-color: var(--color-primary-dark);
+}
+
+.button-secondary {
+  color: var(--color-text);
+  background-color: var(--color-secondary);
+}
+
+
+/* ========================================
+   ATOM — TYPOGRAPHY
+   ======================================== */
+
+.typography-display {
+  margin: 0;
+  color: var(--color-text);
+  font-size: clamp(2.25rem, 8vw, 4rem);
+  line-height: 1.1;
+  font-weight: 700;
+}
+
+.typography-heading {
+  margin: 0;
+  color: var(--color-text);
+  font-size: clamp(1.75rem, 5vw, 2.75rem);
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.typography-subheading {
+  margin: 0;
+  color: var(--color-primary-dark);
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  line-height: 1.3;
+  font-weight: 600;
+}
+
+.typography-body {
+  margin: 0;
+  color: var(--color-text);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.typography-caption {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+
+/* ========================================
+   MOLECULE — HERITAGE CARD
+   ======================================== */
+
+.heritage-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 100%;
+
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 0.75rem;
+
+  box-shadow: 0 2px 8px rgba(31, 41, 51, 0.08);
+}
+
+.heritage-card-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.heritage-card-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+}
+
+.heritage-card-content .typography-caption {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  min-height: 2.625rem;
+}
+
+.heritage-card-content .typography-subheading {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  min-height: 2.6rem;
+}
+
+.heritage-card-content .typography-body {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  min-height: 4.8rem;
+}
+
+.heritage-card-content .button {
+  align-self: flex-start;
+}
+
+
+/* ========================================
+   MOLECULE — SEARCH FORM
+   ======================================== */
+
+.search-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.search-input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 44px;
+  padding: 0.5rem 0.75rem;
+
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+}
+
+.search-input-wrapper:focus-within {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(23, 107, 135, 0.15);
+}
+
+.search-input-wrapper input {
+  width: 100%;
+  min-width: 0;
+  border: none;
+  outline: none;
+
+  color: var(--color-text);
+  background: transparent;
+
+  font-size: 1rem;
+}
+
+.search-input-wrapper input::placeholder {
+  color: var(--color-text-muted);
+}
+
+@media (min-width: 640px) {
+  .search-form {
+    flex-direction: row;
+  }
+
+  .search-input-wrapper {
+    flex: 1;
+  }
+}
+
+/* ========================================
+   ORGANISM — HEADER NAVIGATION
+   ======================================== */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  width: 100%;
+
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.site-header-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.site-logo {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.site-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+
+  width: 100%;
+}
+
+.navigation-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 44px;
+  padding: 0.6rem 0.75rem;
+
+  color: var(--color-text);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+
+  border-radius: 0.5rem;
+}
+
+.navigation-item:hover {
+  background-color: rgba(23, 107, 135, 0.08);
+}
+
+.navigation-item-active {
+  color: var(--color-primary);
+  background-color: rgba(23, 107, 135, 0.1);
+}
+
+.navigation-item:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 2px;
+}
+
+@media (min-width: 768px) {
+  .site-header-inner {
+    flex-direction: row;
+    justify-content: space-between;
+
+    padding: 1rem 1.5rem;
+  }
+
+  .site-navigation {
+    width: auto;
+    gap: 0.5rem;
+  }
+
+  .navigation-item {
+    padding: 0.6rem 1rem;
+  }
+}
+
+/* ========================================
+   ORGANISM — HERO
+   ======================================== */
+
+.hero-section {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+
+  gap: 2rem;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.hero-image-wrapper {
+  width: 100%;
+}
+
+.hero-image {
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+
+  border-radius: 1rem;
+}
+
+@media (min-width: 768px) {
+  .hero-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+
+    padding: 4rem 1.5rem;
+    gap: 3rem;
+  }
+}
+
+
+/* ========================================
+   ORGANISM — HERITAGE GRID
+   ======================================== */
+
+.heritage-grid-section {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.heritage-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .heritage-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .heritage-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+
+/* ========================================
+   SECTION — SEARCH
+   ======================================== */
+
+.search-section {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem 2rem;
+}
+
+ /* ========================================
+    FEATURED HERITAGE — VIEW ALL
+    ======================================== */
+
+.heritage-card-faded {
+  position: relative;
+  overflow: hidden;
+}
+
+.heritage-card-faded::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    to right,
+    transparent 45%,
+    rgba(247, 244, 237, 0.15) 60%,
+    rgba(247, 244, 237, 0.55) 75%,
+    rgba(247, 244, 237, 0.9) 90%,
+    var(--color-background) 100%
+  );
+
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Keep the arrow above the fade */
+.heritage-more-button {
+  z-index: 3;
+}
+
+.heritage-more-button {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 48px;
+  height: 48px;
+
+  color: var(--color-surface);
+  background-color: var(--color-primary);
+
+  border: 3px solid var(--color-surface);
+  border-radius: 50%;
+
+  font-size: 1.5rem;
+  font-weight: 700;
+
+  box-shadow: 0 4px 12px rgba(31, 41, 51, 0.2);
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.heritage-more-button:hover {
+  background-color: var(--color-primary-dark);
+  transform: scale(1.08);
+}
+
+.heritage-more-button:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 3px;
+}
+
+.heritage-card-link:hover .heritage-more-button {
+  background-color: var(--color-primary-dark);
+  transform: translateY(-50%) scale(1.1);
+}
+
+/* ========================================
+   HOME — INTRODUCTION
+   ======================================== */
+
+/* ========================================
+   HOME — FEATURED HERITAGE
+   ======================================== */
+
+.home-featured-section {
+  width: 100%;
+  padding: 2rem 0 3rem;
+}
+
+.home-section-heading {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem 1rem;
+}
+
+
+/* ========================================
+   HOME — WHY EXPLORE
+   ======================================== */
+
+.home-explore-section {
+  width: 100%;
+  padding: 3rem 0;
+
+  background-color: var(--color-surface);
+}
+
+.home-explore-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.home-explore-item {
+  padding: 1.25rem;
+
+  border: 1px solid var(--color-border);
+  border-radius: 0.75rem;
+
+  background-color: var(--color-background);
+}
+
+.home-explore-item .typography-subheading {
+  margin-bottom: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .home-explore-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+
+/* ========================================
+   HOME — INTRODUCTION
+   ======================================== */
+
+.home-intro-section {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+}
+
+.home-intro-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  padding: 2rem;
+
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 1rem;
+
+  box-shadow: 0 4px 16px rgba(31, 41, 51, 0.08);
+}
+
+@media (min-width: 768px) {
+  .home-intro-card {
+    padding: 2.5rem;
+  }
+}
+
+.home-section-separator {
+  width: min(90%, 1200px);
+  height: 1px;
+  margin: 0 auto;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(120, 90, 60, 0.35),
+    transparent
+  );
+}
+
+/* ========================================
+   MOLECULE — HERITAGE TILE
+   ======================================== */
+
+.heritage-tile {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 0.75rem;
+
+  box-shadow: 0 2px 8px rgba(31, 41, 51, 0.08);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.heritage-tile:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(31, 41, 51, 0.12);
+}
+
+.heritage-tile-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.heritage-tile-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+
+  padding: 1rem;
+}
+
+.heritage-tile-content .typography-subheading {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+/* ========================================
+   ORGANISM — HERITAGE TILE GRID
+   ======================================== */
+
+.heritage-tile-grid-section {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.heritage-tile-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .heritage-tile-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .heritage-tile-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ========================================
+   MOLECULE — HERITAGE TILE LINK
+   ======================================== */
+
+.heritage-tile-link {
+  display: block;
+
+  color: inherit;
+  text-decoration: none;
+
+  border-radius: 0.75rem;
+}
+
+.heritage-tile-link:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 4px;
+}
+
+/* ========================================
+   PAGE — HERITAGE DETAIL
+   ======================================== */
+
+.heritage-detail {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 4rem;
+}
+
+/* BACK BUTTON */
+
+.heritage-detail-back {
+  display: inline-flex;
+  align-items: center;
+
+  min-height: 44px;
+  margin-bottom: 1.25rem;
+  padding: 0.65rem 0.9rem;
+
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 600;
+
+  border-radius: 0.5rem;
+}
+
+.heritage-detail-back:hover {
+  background-color: rgba(23, 107, 135, 0.08);
+}
+
+.heritage-detail-back:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 2px;
+}
+
+/* HERO IMAGE */
+
+.heritage-detail-image-wrapper {
+  overflow: hidden;
+
+  width: 100%;
+
+  border-radius: 1rem;
+  box-shadow: 0 4px 16px rgba(31, 41, 51, 0.12);
+}
+
+.heritage-detail-image {
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+/* HEADER */
+
+.heritage-detail-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  padding: 2rem 0 1.5rem;
+}
+
+/* DESCRIPTION */
+
+.heritage-detail-description {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  margin-top: 0.5rem;
+  padding: 1.5rem;
+
+  background-color: var(--color-surface);
+
+  border: 1px solid var(--color-border);
+  border-radius: 1rem;
+
+  box-shadow: 0 3px 12px rgba(31, 41, 51, 0.06);
+}
+
+/* INFORMATION */
+
+.heritage-detail-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  margin-top: 1rem;
+  padding: 1.5rem;
+
+  background-color: var(--color-background);
+
+  border-left: 4px solid var(--color-secondary);
+  border-radius: 0.5rem;
+}
+
+/* DESKTOP */
+
+@media (min-width: 768px) {
+  .heritage-detail {
+    padding: 2rem 1.5rem 5rem;
+  }
+
+  .heritage-detail-header {
+    padding: 2.5rem 0 2rem;
+  }
+
+  .heritage-detail-description,
+  .heritage-detail-info {
+    padding: 2rem;
+  }
+}
+
+ /* ========================================
+    PAGE — ABOUT
+    ======================================== */
+
+.about-page {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 3rem 1rem 5rem;
+}
+
+.about-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  max-width: 800px;
+  margin: 0 auto 2.5rem;
+
+  text-align: center;
+}
+
+.about-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.about-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  padding: 1.5rem;
+
+  background-color: var(--color-surface);
+
+  border: 1px solid var(--color-border);
+  border-radius: 1rem;
+
+  box-shadow: 0 3px 12px rgba(31, 41, 51, 0.06);
+}
+
+@media (min-width: 768px) {
+  .about-page {
+    padding: 4rem 1.5rem 6rem;
+  }
+
+  .about-content {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .about-card {
+    padding: 2rem;
+  }
+}
+
+/* ========================================
+   ACCESSIBILITY — KEYBOARD FOCUS
+   ======================================== */
+
+:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 3px;
+}

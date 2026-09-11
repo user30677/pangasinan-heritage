@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import NavigationItem from "@/components/molecules/NavigationItem/NavigationItem";
 
@@ -9,9 +10,9 @@ export default function HeaderNavigation() {
   return (
     <header className="site-header">
       <div className="site-header-inner">
-        <a href="/" className="site-logo">
+        <Link href="/" className="site-logo">
           Pangasinan Heritage
-        </a>
+        </Link>
 
         <nav
           className="site-navigation"

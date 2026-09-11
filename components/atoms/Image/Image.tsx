@@ -15,9 +15,14 @@ export default function Image({
   className = "",
   loading = "lazy",
 }: ImageProps) {
+  const imageSrc =
+    process.env.NODE_ENV === "production"
+      ? `/pangasinan-heritage${src}`
+      : src;
+
   return (
     <img
-      src={src}
+      src={imageSrc}
       alt={alt}
       width={width}
       height={height}
